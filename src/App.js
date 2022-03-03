@@ -38,7 +38,7 @@ function App() {
     if (value) {
       setDefaultSetting({
         ...defaultSetting,
-        color: "55efc4",
+        color:"#55efc4",
         fontSize: 14,
       });
     }
