@@ -1,26 +1,31 @@
 import React from "react";
-import { useState } from "react";
 
-const ColorPicker = ({defaultSetting,onChangeColor}) => {
-  const [colors, setColors] = useState([
-    "#55efc4",
-    "#81ecec",
-    "#74b9ff",
-    "#a29bfe",
-    "#0984e3",
-  ]);
+const ColorPicker = (props) => {
+  // console.log(props);
+  const colors = ["#55efc4", "#81ecec", "#74b9ff", "#a29bfe", "#0984e3"];
+  function showColor(color) {
+    // console.log(color);
+    return {
+      backgroundColor: color,
+    };
+  }
   const handelClickColor = (color) => {
-    // kiểm tra có onchanage color không
-    if (!onChangeColor) return
-    onChangeColor(color)
+    // kiểm tra có onChanageColor không
+    if (!props.onChangeColor) return;
+    props.onChangeColor(color);
     // update color
+  };
+  function setFontWeight() {
+    return {
+      fontWeight: props.fontWeight,
+    };
   }
   const elementColor = colors.map((color, index) => {
     return (
       <span
         key={index}
-        style={{ backgroundColor: color }}
-        className={defaultSetting.color === color ? "active " : ""}
+        style={showColor(color)}
+        className={props.color === color ? "active " : ""}
         onClick={() => handelClickColor(color)}
       ></span>
     );
@@ -28,7 +33,7 @@ const ColorPicker = ({defaultSetting,onChangeColor}) => {
   return (
     <div className="col-xs-12 col-sm-6 col-md-12 col-lg-6">
       <div className="panel panel-primary">
-        <p className="panel-title">Color Picker</p>
+        <p className="panel-title" style= {setFontWeight()}>Color Picker</p>
       </div>
       <div className="panel-body">
         {elementColor}
